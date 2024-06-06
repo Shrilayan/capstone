@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\vite-project",
+    "\\vite-project\\src",
+    "\\vite-project\\src\\components",
+    "\\vite-project\\src\\components\\card",
+    "\\vite-project\\src\\components\\customerView",
+    "\\vite-project\\src\\components\\customerView\\mainpage",
+    "\\vite-project\\src\\components\\restaurantView",
+    "\\vite-project\\src\\components\\restaurantView\\sidebar",
+    "\\vite-project\\src\\components\\topbar"
+  ],
+  "SelectedNode": "\\vite-project\\src\\components\\customerView\\mainpage\\CustomerOrder.jsx",
+  "PreviewInSolutionExplorer": false
+}
