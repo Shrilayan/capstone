@@ -3,10 +3,10 @@
     "",
     "\\web-page",
     "\\web-page\\src",
-    "\\web-page\\src\\assets",
     "\\web-page\\src\\components",
-    "\\web-page\\src\\components\\login"
+    "\\web-page\\src\\components\\assets",
+    "\\web-page\\src\\services"
   ],
-  "SelectedNode": "\\web-page\\src\\components",
+  "SelectedNode": "\\web-page\\src\\components\\About.jsx",
   "PreviewInSolutionExplorer": false
 }

@@ -2,6 +2,7 @@ package com.ecommerce_website.React.SpringBoot.MySQL.restController;
 
 import com.ecommerce_website.React.SpringBoot.MySQL.model.Product;
 import com.ecommerce_website.React.SpringBoot.MySQL.repository.ProductRepository;
+import com.ecommerce_website.React.SpringBoot.MySQL.service.CartItemService;
 import com.ecommerce_website.React.SpringBoot.MySQL.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,28 +11,43 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
-@RequestMapping("/product/")
+@RequestMapping("/product")
 public class ProductsRestController {
 
     @Autowired
-    private ProductService productService ;
+    private ProductRepository productRepository;
 
-    @PostMapping("/addNewProduct")
-    public Product addNewProduct(@RequestBody Product product){
-        return productService.addNewProduct(product);
-    }
-    @GetMapping("/getAllProducts")
-    public List<Product> getAllProducts(){
-        return productService.getAllProducts();
-    }
+    @Autowired
+    //private CartItemService cartItemService;
 
-
-    @DeleteMapping("/deleteProductDetails/{productId}")
-    public void deleteProductDetails(@PathVariable("productId")int productId){
-        productService.deleteProductDetails(productId);
+    @GetMapping
+    public Iterable<Product> getAllProducts() {
+        return productRepository.findAll();
     }
 
+    @PostMapping
+    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
+        Product newProduct = productRepository.save(product);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newProduct);
+    }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
+        return ResponseEntity.ok().body(product);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchProductsByName(@RequestParam String name) {
+        List<Product> products = productRepository.searchByName(name);
+        if (products.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(products);
+        }
+    }
 }
 

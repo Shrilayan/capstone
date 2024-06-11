@@ -1,63 +1,80 @@
-//import ProductList from "./ProductList";
+
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { getUserByUserName } from '../services/UserService';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './Nowlogin.css';
+
+function Nowlogin() {
+    const [loginData, setLoginData] = useState({
+        username: '',
+        password: '',
+    });
+
+    const [loginError, setLoginError] = useState(null);
+    const [loginSuccess, setLoginSuccess] = useState(false); // State to track login success
+    let navigate = useNavigate();
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setLoginData({ ...loginData, [name]: value });
+    };
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        console.log(loginData);
+        console.log(loginData.username);
+
+        getUserByUserName(loginData.username).then(response => {
+                console.log(response.data);
+                // Set login success state to true and clear login error
+                setLoginSuccess(true);
+                setLoginError(null);
+                // Redirect to home page after a short delay
+                setTimeout(() => {
+                    navigate('/productList', { state: { message: 'Login successful' } });
+                }, 1000);
+            })
+            .catch(error => {
+                console.error(error);
+                // Set login error message
+                setLoginError('Invalid username or password');
+                // Reset login success state
+                setLoginSuccess(false);
+            });
+    };
 
 
-const Nowlogin = () => {
-
-    //function gotoproduct() {
-        //navigate("/productlist");
-    //}
     return (
-        <div className='container-fluid'>
-            <div className='row'>
-                <div className='col-3'>
-                </div>
-                <div className='col-6'>
-                    <div className="header">
-                    <div className="text">Login</div>
-                        <div className="inputs">
-                            <div className='row'>
-                                <div className='col-2'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-check" viewBox="0 0 16 16">
-                                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                                    <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
-                                    </svg>
-                                </div>
-                                <div className='col-10'>
-                                <input type="text" placeholder="Enter name">
-                                </input>
-                                </div>
-                            </div>
-                            <div className='row'>
-                                <div className='col-2'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
-                                        <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8m4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5" />
-                                        <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
-                                    </svg>
-                                </div>
-                                <div className='col-10'>
-                                    <input type="text" placeholder="Enter password">
-                                    </input>
-                                </div>
-                                <div className='row'></div>
-                                <div className="container">
-                                    <div className='row'>
-                                        <div className='col-4'>
-                                        </div>
-                                        <div className='col-4'>
-                                            <button type="button" className='btn btn-dark'>Login</button>
-                                        </div>
-                                        <div className='col-4'>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                </div>
-                <div className='col-3'>
+        <div>
+            <div >
+                <h2>Login</h2>
+                {loginSuccess && <div >Login successful</div>}
+                <div className="container" style={{width:"fit-content"} }>
+                <div className="card">
+                <form onSubmit={handleSubmit}>
+                    <div >
+                                <label ><i className="bi bi-person-check-fill"></i></label>
+                        <input type="text" name="username" value={loginData.username} onChange={handleChange} />
+                    </div>
+                    <div >
+                                <label > <i className="bi bi-key-fill"></i></label>
+                        <input type="password" name="password" value={loginData.password} onChange={handleChange} />
+                    </div>
+                    {loginError && <div>{loginError}</div>}
+                    <button type="submit">Login</button>
+                </form>
+                <div>
+                    <p>Don't have an account? <Link to="/Login">Register new user</Link></p>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
-    )
+    );
 }
+
 export default Nowlogin;
+
+

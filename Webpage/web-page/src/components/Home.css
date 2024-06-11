@@ -1,0 +1,12 @@
+.opacity {
+    opacity: 0.6;
+
+}
+.caption{
+    background-color:#f1c386;
+    font-size: 2rem;
+    font-weight:bolder;
+    position:absolute !important;
+    top:50% !important;
+    left: 10%;
+}

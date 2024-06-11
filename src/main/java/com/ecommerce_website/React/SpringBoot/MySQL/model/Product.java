@@ -9,58 +9,57 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    @Column(name = "productId")
-   private int productId;
+    @Column(name = "id")
+    private long id;
 
-    @Column(name = "productName")
-    private String productName;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "productDescription")
-    private String productDescription;
+    @Column(name = "price")
+    private double price;
 
-    @Column(name = "productDiscountedPrice")
-    private double productDiscountedPrice;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "imageUrl")
+    private String imageUrl;
 
-    @Column(name = "productActualPrice")
-    private double productActualPrice;
-
-    public int getProductId() {
-        return productId;
+    public long getId() {
+        return id;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getProductDescription() {
-        return productDescription;
+    public double getPrice() {
+        return price;
     }
 
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public double getProductDiscountedPrice() {
-        return productDiscountedPrice;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProductDiscountedPrice(double productDiscountedPrice) {
-        this.productDiscountedPrice = productDiscountedPrice;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public double getProductActualPrice() {
-        return productActualPrice;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setProductActualPrice(double productActualPrice) {
-        this.productActualPrice = productActualPrice;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

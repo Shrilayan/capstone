@@ -7,26 +7,32 @@ nav{
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
 }
 ul {
+
     display: flex;
+    flex-direction:row;
     list-style: none;
-    justify-content: center;
-    padding-right: 30px;
-    position: relative;
-    align-items:center;
+
 }
 
 li {
-    margin-right: 20px;
+    position:relative;
+    right:3px;
+    margin-right: 25px;
     font-size: 20px;
     cursor: pointer;
     list-style:none;
     padding: 0 20px;
-    position: relative;
     font-family:rubic;
 }
-svg{
+svg {
     height: 30px;
-    width:30px;
-    align-items:center;
-
+    width: 30px;
+    align-items: center;
+}
+a{
+    color:white !important;
+    text-decoration:none !important;
+}
+a:visited{
+    text-decoration: none !important;
 }

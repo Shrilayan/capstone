@@ -46,11 +46,6 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    /*@GetMapping("/name/{userName}")
-    public ResponseEntity<User> getProductByName(@PathVariable String userName) {
-        User user = userRepository.getUserByName(userName);
-        return ResponseEntity.ok(user);
-    }*/
 
     @PostMapping("/register")
     public ResponseEntity<User> createProduct(@RequestBody User user) {

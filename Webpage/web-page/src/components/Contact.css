@@ -1,0 +1,45 @@
+.contact-container {
+    margin-top: 50px;
+}
+
+.contact-info, .social-media {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info {
+    border: 2px solid #007bff;
+}
+
+.social-media {
+    border: 2px solid #28a745;
+}
+
+.contact-item, .social-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+    .contact-item i, .social-item i {
+        font-size: 28px;
+        margin-right: 15px;
+        color: #007bff;
+    }
+
+    .social-item i {
+        color: #28a745;
+    }
+
+    .contact-item p, .social-item p {
+        margin: 0;
+        font-size: 18px;
+        color: #333;
+    }
+
+    .social-item:hover {
+        transform: translateY(-3px);
+        transition: transform 0.3s ease-in-out;
+    }
